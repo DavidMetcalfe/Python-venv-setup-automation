@@ -50,7 +50,7 @@ if os.path.exists(destination):
     print("venv folder created.\n")
     with open(os.path.join(destination, 'requirements.txt'), 'w') as f:
         reqinput = input(
-            "Enter modules (if any) to include in requirements.txt (hit Enter after each package): \n")
+            "Enter modules (if any) to include in requirements.txt: \nHit Enter after each package. \n")
 
         while reqinput is not "":
             requirements.append(reqinput)
@@ -60,9 +60,9 @@ if os.path.exists(destination):
             for i in requirements:
                 f.write("{}\n".format(i))
 
+    if len(requirements) > 0:
         # Install requirements to venv.
         subprocess.run([os.path.join(destination, 'Scripts',
                                      'pip.exe')] + 'install {}'.format(' '.join(requirements)).split())
-
 else:
     sys.exit(0)
